@@ -1,0 +1,35 @@
+[package]
+name = "plugin_connector_rithmic"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+description.workspace = true
+license.workspace = true
+documentation.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+backend.workspace = true
+plugins_interfaces.workspace = true
+
+anyhow.workspace = true
+enumflags2.workspace = true
+typetag.workspace = true
+serde.workspace = true
+prost = "0.13"
+# Only necessary if using Protobuf well-known types:
+prost-types = "0.13"
+ws-tool = "0.11"
+hproxy = { version = "0.2", features = ["sync", "async"] }
+
+rustls = "0.23"
+http = "1.1"
+
+[build-dependencies]
+prost-build = { version = "0.13" }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+env_logger = "0.11"
+rustls-native-certs = "0.8"

@@ -1,0 +1,27 @@
+[package]
+name = "rs-trader"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+description.workspace = true
+license.workspace = true
+documentation.workspace = true
+
+[[bin]]
+name = "rs-trader"
+path = "src/main.rs"
+
+[dependencies]
+gui.workspace = true
+backend.workspace = true
+messaging.workspace = true
+plugins_interfaces.workspace = true
+
+serde.workspace = true
+log.workspace = true
+egui.workspace = true
+eframe.workspace = true
+egui_tiles.workspace = true
+env_logger.workspace = true
+flume.workspace = true
+libloading.workspace = true

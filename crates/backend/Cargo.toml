@@ -1,0 +1,16 @@
+[package]
+name = "backend"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+description.workspace = true
+license.workspace = true
+documentation.workspace = true
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+enumflags2.workspace = true
+serde.workspace = true
+typetag.workspace = true

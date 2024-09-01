@@ -1,0 +1,66 @@
+[workspace]
+
+resolver = "2"
+members = [
+    "crates/backend",
+    "crates/gui",
+    "crates/messaging",
+    "crates/plugins_interfaces",
+    "crates/rs-trader",
+
+    "plugins/connectors/rithmic",
+    "plugins/panes/accounts",
+    "plugins/panes/connections",
+    "plugins/panes/orders",
+    "plugins/panes/positions",
+]
+default-members = ["crates/rs-trader"]
+
+[workspace.package]
+authors = ["Philippe CORTELLEZZI <philippe.cortellezzi@gmail.com>"]
+edition = "2021"
+description = "Trading Platform"
+license = "Apache-2.0"
+documentation = "https://github.com/pcortellezzi/rs_trader"
+
+[workspace.dependencies]
+backend = { path = "crates/backend" }
+gui = { path = "crates/gui" }
+messaging = { path = "crates/messaging" }
+plugins_interfaces = { path = "crates/plugins_interfaces" }
+rs-trader = { path = "crates/rs-trader" }
+
+plugin_connector_rithmic = { path = "plugins/connectors/rithmic" }
+plugin_pane_accounts = { path = "plugins/panes/accounts" }
+plugin_pane_connections = { path = "plugins/panes/connections" }
+plugin_pane_orders = { path = "plugins/panes/orders" }
+plugin_pane_positions = { path = "plugins/panes/positions" }
+
+anyhow = "1.0"
+egui = "0.28"
+eframe = { version = "0.28", default-features = false, features = [
+    "accesskit",     # Make egui comptaible with screen readers. NOTE: adds a lot of dependencies.
+    "default_fonts", # Embed the default egui fonts.
+    "glow",          # Use the glow rendering backend. Alternative: "wgpu".
+    "persistence",   # Enable restoring app state when restarting the app.
+] }
+egui_extras = "0.28"
+egui_tiles = "0.9"
+flume = "0.11"
+log = "0.4"
+#cglue # pour la gestion des trait et des plugins TODO
+uuid = { version = "1.8", features = ["v4"] }
+polars = { version = "0.42", features = ["parquet", "timezones"] }
+enumflags2 = "0.7"
+serde = { version = "1.0", features = ["derive"] }
+env_logger = "0.11"
+regex = "1.10"
+typetag = "0.2"
+libloading = "0.8"
+
+
+[profile.release]
+opt-level = 2 # fast and small wasm
+
+[profile.dev.package."*"]
+opt-level = 2

@@ -1,0 +1,30 @@
+[package]
+name = "plugin_pane_connections"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+description.workspace = true
+license.workspace = true
+documentation.workspace = true
+
+[lib]
+path = "src/lib.rs"
+crate-type = ["dylib"]
+
+[dependencies]
+backend.workspace = true
+plugins_interfaces.workspace = true
+
+anyhow.workspace = true
+egui.workspace = true
+egui_tiles.workspace = true
+egui_extras.workspace = true
+polars.workspace = true
+
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+env_logger = "0.11"
+
+# web:
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen-futures = "0.4"
